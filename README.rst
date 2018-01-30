@@ -6,7 +6,6 @@ Django Social Pill offers convenience tools for routine tasks concerning social 
 
 It builds on top of `Python Social Auth application for Django <https://github.com/python-social-auth/social-app-django>`_ package.
 
-------------
 Installation
 ------------
 1. Add "django_social_pill" to your INSTALLED_APPS setting like this::
@@ -26,6 +25,7 @@ Installation
         'social_core.backends.twitter.TwitterOAuth',
         'django.contrib.auth.backends.ModelBackend',
     ]
+
 Github, VK, Facebook, Google and Twitter are the only ones that are supported by now.
 :code:`ModelBackend` is needed to support traditional authentication.
 
@@ -60,11 +60,10 @@ Github, VK, Facebook, Google and Twitter are the only ones that are supported by
 
 Now you are ready to make use of all built-in features that the app offers.
 
-------------
 The Features
 ------------
 Association by email
---------------------
+~~~~~~~~~~~~~~~~~~~~
 The default pipeline associates users by email: if the new user has the same email as an existing one, the new user logs in as the existing one.
 
 To ensure that we get user email, we should request it explicitly in the settings::
@@ -77,7 +76,7 @@ To ensure that we get user email, we should request it explicitly in the setting
     SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
 
 Avoid social auth exceptions
-----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 There are times when we want to hide the server error from users and just display an error message using Django's :code:`messaging` framework.
 To do that, it's enough to add the middleware to the end of the list::
 
@@ -91,20 +90,19 @@ To do that, it's enough to add the middleware to the end of the list::
 
 Now the targeted page just has to show the message to the user.
 Save the avatar
----------------
+~~~~~~~~~~~~~~~
 If your user model has :code:`avatar` attribute, the pipeline will fetch the user picture from social network and assign it to the attribute.
 
------------------
 Frontend Features
 -----------------
 The Dependencies
-================
+~~~~~~~~~~~~~~~~
 
 Every inclusion tag in the app makes use of `Bootstrap 3 <https://www.bootstrapcdn.com/>`_,
 `Bootstrap Social <https://cdnjs.com/libraries/bootstrap-social>`_ and `Font Awesome <https://www.bootstrapcdn.com/fontawesome/>`_.
 
 The login buttons
-=================
+~~~~~~~~~~~~~~~~~
 Easily add the login buttons to your template::
 
     {% load social_login %}
@@ -117,7 +115,7 @@ Easily add the login buttons to your template::
 
 
 The social connect buttons
-==========================
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 Already authorized user can add and remove connected accounts with these buttons::
 
     {% load social_connect %}
@@ -127,6 +125,7 @@ Already authorized user can add and remove connected accounts with these buttons
     {% show_facebook_connect next_url user %}
     {% show_twitter_connect next_url user %}
     {% show_google_connect next_url user %}
+    
 May not work very well if Facebook doesn't give us the user name, so be sure to request it explicitly::
 
     SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
@@ -136,7 +135,7 @@ May not work very well if Facebook doesn't give us the user name, so be sure to 
 
 
 The social link buttons
-=======================
+~~~~~~~~~~~~~~~~~~~~~~~
 The link buttons allow you you show the connected social networks::
 
     {% load social_link_buttons %}
