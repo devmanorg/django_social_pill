@@ -1,0 +1,3 @@
+<a class="btn {% if is_large %}btn-lg{% endif %} btn-block btn-social btn-vk" href="{% url 'social:begin' 'vk-oauth2' %}?next={{ next }}">
+  <i class="fa fa-vk"></i> {% if is_login %}Войти{% else %}Зарегистрироваться{% endif %} через ВК
+</a>

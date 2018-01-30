@@ -1,0 +1,9 @@
+{% if login %}
+  <p>Подключен Facebook аккаунт <a href="{{ url }}" target="_blank">{{ login }}</a></p>
+  <button type="submit" class="btn btn-default" name="unlink_facebook_account">Отвязать</button>
+{% else %}
+  <p>Facebook аккаунт не подключен</p>
+  <a class="btn btn-lg btn-block btn-social btn-facebook" href="{% url 'social:begin' 'facebook' %}?next={{ next }}">
+    <i class="fa fa-facebook"></i> Привязать Facebook аккаунт
+  </a>
+{% endif %}

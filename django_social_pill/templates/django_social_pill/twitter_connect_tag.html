@@ -1,0 +1,9 @@
+{% if login %}
+  <p>Подключен Twitter аккаунт <a href="{{ url }}" target="_blank">{{ login }}</a></p>
+  <button type="submit" class="btn btn-default" name="unlink_twitter_account">Отвязать</button>
+{% else %}
+  <p>Twitter аккаунт не подключен</p>
+  <a class="btn btn-lg btn-block btn-social btn-twitter" href="{% url 'social:begin' 'twitter' %}?next={{ next }}">
+    <i class="fa fa-twitter"></i> Привязать Twitter аккаунт
+  </a>
+{% endif %}

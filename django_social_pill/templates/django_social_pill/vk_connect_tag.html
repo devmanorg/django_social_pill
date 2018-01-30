@@ -1,0 +1,9 @@
+{% if login %}
+  <p>Подключен VK аккаунт <a href="{{ url }}" target="_blank">{{ login }}</a></p>
+  <button type="submit" class="btn btn-default" name="unlink_vk_account">Отвязать</button>
+{% else %}
+  <p>VK аккаунт не подключен</p>
+  <a class="btn btn-lg btn-block btn-social btn-vk" href="{% url 'social:begin' 'vk-oauth2' %}?next={{ next }}">
+    <i class="fa fa-vk"></i> Привязать VK аккаунт
+  </a>
+{% endif %}
