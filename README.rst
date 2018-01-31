@@ -6,6 +6,24 @@ Django Social Pill offers convenience tools for routine tasks concerning social 
 
 It builds on top of `Python Social Auth application for Django <https://github.com/python-social-auth/social-app-django>`_ package.
 
+The app was tested out on Django `1.10` and `1.11`.
+
+Deploy the example project
+--------------------------
+
+1. :code:`git clone https://github.com/devmanorg/django_social_pill`
+2. :code:`cd django_social_pill/example_project`
+3. :code:`pip install -r requirements.txt`
+4. :code:`python manage.py migrate`
+5. Provide the following environment variables:
+    - SOCIAL_AUTH_VK_OAUTH2_KEY
+    - SOCIAL_AUTH_VK_OAUTH2_SECRET
+    - SOCIAL_AUTH_TWITTER_KEY
+    - SOCIAL_AUTH_TWITTER_SECRET
+
+    They can be obtained be registering corresponding OAuth apps.
+6. :code:`python manage.py runserver`
+
 Installation
 ------------
 1. Add "django_social_pill" and "social_django" to your INSTALLED_APPS setting like this::
