@@ -132,6 +132,9 @@ Easily add the login buttons to your template::
     {% show_twitter_login next_url is_login is_large %}
     {% show_github_login next_url is_login is_large %}
 
+`Usage example <https://github.com/devmanorg/django_social_pill/blob/master/example_project/users/templates/login.html>`_
+
+.. image:: https://user-images.githubusercontent.com/13587415/35627813-2c52a450-06ab-11e8-99d4-1054f817a317.png
 
 The social connect buttons
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -145,6 +148,10 @@ Already authorized user can add and remove connected accounts with these buttons
     {% show_twitter_connect next_url user %}
     {% show_google_connect next_url user %}
     
+`Usage example (note the corresponding view) <https://github.com/devmanorg/django_social_pill/blob/master/example_project/users/templates/profile.html>`_
+
+.. image:: https://user-images.githubusercontent.com/13587415/35627717-cc44a19e-06aa-11e8-8d55-eb006205c3af.png
+
 May not work very well if Facebook doesn't give us the user name, so be sure to request it explicitly::
 
     SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
@@ -163,5 +170,5 @@ The link buttons allow you you show the connected social networks::
     {% show_facebook_link_button user %}
     {% show_twitter_link_button user %}
     {% show_github_link_button user %}
-
+.. image:: https://user-images.githubusercontent.com/13587415/35627811-2b023700-06ab-11e8-8aa8-eba8c693bcae.png
 
