@@ -8,10 +8,11 @@ It builds on top of `Python Social Auth application for Django <https://github.c
 
 Installation
 ------------
-1. Add "django_social_pill" to your INSTALLED_APPS setting like this::
+1. Add "django_social_pill" and "social_django" to your INSTALLED_APPS setting like this::
 
     INSTALLED_APPS = [
         ...
+        'social_django',
         'django_social_pill',
     ]
 
