@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% load social_login %}
+
+{% block title %}Вход{% endblock title %}
+
+{% block content %}
+  <div class="container">
+    <div class="row text-center" style="margin-bottom: 15px; margin-top: 50px;">
+      <h1>Привет!</h1>
+      <div>Давай знакомиться.</div>
+      {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+          <div>{{ message }}</div>
+        {% endif %}
+      {% endfor %}
+      {# Note that the error messages will be raplaced by exceptions while DEBUG = True #}
+      {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+          <div style="color: darkred">{{ message }}</div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="row col-sm-4 col-sm-offset-4">
+      {% show_vk_login request.path True True %}
+    </div>
+    <div class="row col-sm-4 col-sm-offset-4" style="margin-top: 10px;">
+      {% show_twitter_login request.path True False %}
+    </div>
+    <div class="col-sm-4 col-sm-offset-4 centered" style="margin-top: 30px;">
+      Мы&nbsp;не&nbsp;просим лишних прав доступа и&nbsp;не&nbsp;дадим никому твой&nbsp;аккаунт.
+    </div>
+  </div>
+{% endblock content %}

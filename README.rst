@@ -6,12 +6,31 @@ Django Social Pill offers convenience tools for routine tasks concerning social 
 
 It builds on top of `Python Social Auth application for Django <https://github.com/python-social-auth/social-app-django>`_ package.
 
+The app was tested out on Django `1.10` and `1.11`.
+
+Deploy the example project
+--------------------------
+
+1. :code:`git clone https://github.com/devmanorg/django_social_pill`
+2. :code:`cd django_social_pill/example_project`
+3. :code:`pip install -r requirements.txt`
+4. :code:`python manage.py migrate`
+5. Provide the following environment variables:
+    - SOCIAL_AUTH_VK_OAUTH2_KEY
+    - SOCIAL_AUTH_VK_OAUTH2_SECRET
+    - SOCIAL_AUTH_TWITTER_KEY
+    - SOCIAL_AUTH_TWITTER_SECRET
+
+    They can be obtained be registering corresponding OAuth apps.
+6. :code:`python manage.py runserver`
+
 Installation
 ------------
-1. Add "django_social_pill" to your INSTALLED_APPS setting like this::
+1. Add "django_social_pill" and "social_django" to your INSTALLED_APPS setting like this::
 
     INSTALLED_APPS = [
         ...
+        'social_django',
         'django_social_pill',
     ]
 
@@ -113,6 +132,9 @@ Easily add the login buttons to your template::
     {% show_twitter_login next_url is_login is_large %}
     {% show_github_login next_url is_login is_large %}
 
+`Usage example <https://github.com/devmanorg/django_social_pill/blob/master/example_project/users/templates/login.html>`_
+
+.. image:: https://user-images.githubusercontent.com/13587415/35627813-2c52a450-06ab-11e8-99d4-1054f817a317.png
 
 The social connect buttons
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -126,6 +148,10 @@ Already authorized user can add and remove connected accounts with these buttons
     {% show_twitter_connect next_url user %}
     {% show_google_connect next_url user %}
     
+`Usage example (note the corresponding view) <https://github.com/devmanorg/django_social_pill/blob/master/example_project/users/templates/profile.html>`_
+
+.. image:: https://user-images.githubusercontent.com/13587415/35627717-cc44a19e-06aa-11e8-8d55-eb006205c3af.png
+
 May not work very well if Facebook doesn't give us the user name, so be sure to request it explicitly::
 
     SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
@@ -144,5 +170,5 @@ The link buttons allow you you show the connected social networks::
     {% show_facebook_link_button user %}
     {% show_twitter_link_button user %}
     {% show_github_link_button user %}
-
+.. image:: https://user-images.githubusercontent.com/13587415/35627811-2b023700-06ab-11e8-8aa8-eba8c693bcae.png
 
