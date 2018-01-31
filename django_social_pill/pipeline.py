@@ -40,6 +40,8 @@ def save_fb_full_name_as_extra_data(backend, details, uid, *args, **kwargs):
 
 
 def save_user_avatar(backend, user, response, *args, **kwargs):
+    if not hasattr(user, 'avatar') or user.avatar:
+        return
     url = None
     ext = None
     if backend.name == 'twitter':
