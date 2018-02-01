@@ -22,14 +22,23 @@ def get_google_login(user):
     return auth.uid if auth else None
 
 
+def get_fullname_or_id(social_auth):
+    if not social_auth:
+        return
+    fullname = social_auth.extra_data.get('fullname')
+    if fullname:
+        return fullname
+    return social_auth.uid
+
+
 def get_vk_name(user):
     """Returns full name from the VK or None if there isn't any
 
     Requires django_social_pill.pipeline.save_vk_full_name_as_extra_data
     to be present in the pipeline, otherwise the result is always None.
     """
-    info = user.social_auth.filter(provider='vk-oauth2').first()
-    return info.extra_data.get('fullname') if info else None
+    social_auth = user.social_auth.filter(provider='vk-oauth2').first()
+    return get_fullname_or_id(social_auth)
 
 
 def get_facebook_name(user):
@@ -38,8 +47,8 @@ def get_facebook_name(user):
     Requires django_social_pill.pipeline.save_fb_full_name_as_extra_data
     to be present in the pipeline, otherwise the result is always None.
     """
-    info = user.social_auth.filter(provider='facebook').first()
-    return info.extra_data.get('fullname') if info else None
+    social_auth = user.social_auth.filter(provider='facebook').first()
+    return get_fullname_or_id(social_auth)
 
 
 def get_twitter_login(user):
