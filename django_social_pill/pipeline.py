@@ -53,6 +53,8 @@ def save_user_avatar(backend, user, response, *args, **kwargs):
         ext = 'jpg'
     elif backend.name == 'vk-oauth2':
         url = response['user_photo']
+    elif backend.name == 'telegram':
+        url = response['photo_url']
     if url:
         ext = ext or url.split('.')[-1]
         filename = 'avatar.%s' % ext

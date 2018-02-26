@@ -1,0 +1,8 @@
+<script async src="https://telegram.org/js/telegram-widget.js?3"
+        data-telegram-login="{{ bot_name }}"
+        data-size="{{ button_size }}"
+        {% if not show_user_photo %} data-userpic="false" {% endif %}
+        data-radius="{{ corner_radius }}"
+        data-auth-url="{{ redirect_url }}"
+        {% if ask_to_send_messages %} data-request-access="write" {% endif %}>
+</script>
