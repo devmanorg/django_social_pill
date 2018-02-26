@@ -42,6 +42,7 @@ Installation
         'social_core.backends.facebook.FacebookOAuth2',
         'social_core.backends.google.GoogleOAuth2',
         'social_core.backends.twitter.TwitterOAuth',
+        'django_social_pill.backends.TelegramAuth',
         'django.contrib.auth.backends.ModelBackend',
     ]
 
@@ -66,6 +67,8 @@ Github, VK, Facebook, Google and Twitter are the only ones that are supported by
     SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
     SOCIAL_AUTH_TWITTER_KEY = ''
     SOCIAL_AUTH_TWITTER_SECRET = ''
+    SOCIAL_PILL_TELEGRAM_BOT_NAME = ''
+    SOCIAL_PILL_TELEGRAM_BOT_TOKEN = ''
 
 5. Add the pipeline::
 
@@ -131,6 +134,7 @@ Easily add the login buttons to your template::
     {% show_google_login next_url is_login is_large %}
     {% show_twitter_login next_url is_login is_large %}
     {% show_github_login next_url is_login is_large %}
+    {% show_telegram_login %}
 
 `Usage example <https://github.com/devmanorg/django_social_pill/blob/master/example_project/users/templates/login.html>`_
 
@@ -147,7 +151,8 @@ Already authorized user can add and remove connected accounts with these buttons
     {% show_facebook_connect next_url user %}
     {% show_twitter_connect next_url user %}
     {% show_google_connect next_url user %}
-    
+    {% show_telegram_connect user %}
+
 `Usage example (note the corresponding view) <https://github.com/devmanorg/django_social_pill/blob/master/example_project/users/templates/profile.html>`_
 
 .. image:: https://user-images.githubusercontent.com/13587415/35627717-cc44a19e-06aa-11e8-8d55-eb006205c3af.png
