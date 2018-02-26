@@ -1,0 +1,8 @@
+{% load social_login %}
+
+{% if login %}
+  <p>Подключен Telegram аккаунт <a href="{{ url }}" target="_blank">{{ login }}</a></p>
+  <button type="submit" class="btn btn-default" name="unlink_telegram_account">Отвязать</button>
+{% else %}
+  {% show_telegram_login 'large' %}
+{% endif %}

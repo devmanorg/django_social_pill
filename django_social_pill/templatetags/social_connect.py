@@ -57,3 +57,11 @@ def show_google_connect(next_url, user):
         next_url
     )
 
+
+@register.inclusion_tag('django_social_pill/telegram_connect_tag.html')
+def show_telegram_connect(user):
+    context = {
+        'login': utils.get_telegram_username(user),
+        'url': utils.get_telegram_url(user),
+    }
+    return context

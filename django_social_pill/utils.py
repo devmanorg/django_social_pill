@@ -15,11 +15,19 @@ def unlink_appropriate_account(user, request):
         unlink_account(user, 'twitter')
     if 'unlink_google_account' in request.POST:
         unlink_account(user, 'google-oauth2')
+    if 'unlink_telegram_account' in request.POST:
+        unlink_account(user, 'telegram')
 
 
 def get_google_login(user):
     auth = user.social_auth.filter(provider='google-oauth2').first()
     return auth.uid if auth else None
+
+
+def get_telegram_username(user):
+    social_auth = user.social_auth.filter(provider='telegram').first()
+    if social_auth:
+        return social_auth.extra_data['username']
 
 
 def get_fullname_or_id(social_auth):
@@ -91,3 +99,8 @@ def get_google_url(user):
     if email:
         return 'mailto:%s' % email
 
+
+def get_telegram_url(user):
+    username = get_telegram_username(user)
+    if username:
+        return 'https://telegram.me/%s' % username
