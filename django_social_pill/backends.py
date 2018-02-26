@@ -1,4 +1,9 @@
+from django.conf import settings
+
 from social_core.backends.base import BaseAuth
+from social_core.utils import handle_http_errors
+
+from .telegram_utils import verify_telegram_authentication
 
 
 class TelegramAuth(BaseAuth):
@@ -22,20 +27,25 @@ class TelegramAuth(BaseAuth):
             'last_name': last_name
         }
 
-    def auth_complete(self, request, *args, **kwargs):
-        response_with_lists = dict(request.GET.dict())
-        response = {}
-        for key, item in response_with_lists.items():
+    def turn_querydict_into_dict(self, query_dict):
+        dict_with_lists = dict(query_dict)
+        result = {}
+        for key, item in dict_with_lists.items():
             if isinstance(item, list) and len(item) == 1:
-                response[key] = item[0]
+                result[key] = item[0]
             else:
-                response[key] = item
-        kwargs.update(
-            {
-                'backend': self,
-                'response': response,
-            }
-        )
+                result[key] = item
+        return result
+
+    def process_error(self, data):
+        bot_token = settings.SOCIAL_PILL_TELEGRAM_BOT_TOKEN
+        verify_telegram_authentication(bot_token, request_data=data)
+
+    @handle_http_errors
+    def auth_complete(self, request, *args, **kwargs):
+        response = self.turn_querydict_into_dict(request.GET.dict())
+        self.process_error(data=response)
+        kwargs.update({'backend': self, 'response': response})
         return self.strategy.authenticate(*args, **kwargs)
 
     # This is a different kind of backend: it neither uses redirect
