@@ -40,7 +40,7 @@ def show_google_login(next_url, is_login, is_large):
 
 
 @register.inclusion_tag('django_social_pill/telegram_login.html')
-def show_telegram_login(button_size='large', ask_to_send_messages=False,
+def show_telegram_login(button_size='large', ask_to_send_messages=True,
                         show_user_photo=True, corner_radius=20):
     allowed_button_sizes = ('large', 'medium', 'small')
     if button_size not in allowed_button_sizes:
