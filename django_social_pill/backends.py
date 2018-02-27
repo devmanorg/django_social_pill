@@ -58,4 +58,4 @@ class TelegramAuth(BaseAuth):
         raise NotImplementedError()
 
     def auth_html(self):
-        return NotImplementedError()
+        raise NotImplementedError()
