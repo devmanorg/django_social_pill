@@ -41,7 +41,7 @@ def show_google_login(next_url, is_login, is_large):
 
 @register.inclusion_tag('django_social_pill/telegram_login.html')
 def show_telegram_login(button_size='large', ask_to_send_messages=False,
-                        show_user_photo=True, corner_radius=20):
+                        show_user_photo=True, corner_radius=20, next=''):
     allowed_button_sizes = ('large', 'medium', 'small')
     if button_size not in allowed_button_sizes:
         raise ValueError(
@@ -57,5 +57,6 @@ def show_telegram_login(button_size='large', ask_to_send_messages=False,
         'button_size': button_size,
         'ask_to_send_messages': ask_to_send_messages,
         'show_user_photo': show_user_photo,
-        'corner_radius': corner_radius
+        'corner_radius': corner_radius,
+        'next': next,
     }

@@ -13,4 +13,6 @@ class SocialAuthErrorMessageMiddleware(SocialAuthExceptionMiddleware):
         return message
 
     def get_redirect_uri(self, request, exception):
-        return request.backend.strategy.session_get(REDIRECT_FIELD_NAME)
+        redirect_uri = request.backend.strategy.session_get(REDIRECT_FIELD_NAME)
+        redirect_uri = redirect_uri or super().get_redirect_uri(request, exception)
+        return redirect_uri

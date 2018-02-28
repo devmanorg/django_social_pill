@@ -60,7 +60,7 @@ def show_google_connect(next_url, user):
 
 @register.inclusion_tag('django_social_pill/telegram_connect_tag.html')
 def show_telegram_connect(user, button_size='large', ask_to_send_messages=False,
-                          show_user_photo=True, corner_radius=20):
+                          show_user_photo=True, corner_radius=20, next=''):
     context = {
         'login': utils.get_telegram_username(user),
         'url': utils.get_telegram_url(user),
@@ -68,5 +68,6 @@ def show_telegram_connect(user, button_size='large', ask_to_send_messages=False,
         'ask_to_send_messages': ask_to_send_messages,
         'show_user_photo': show_user_photo,
         'corner_radius': corner_radius,
+        'next': next,
     }
     return context
