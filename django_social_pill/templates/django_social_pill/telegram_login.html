@@ -3,6 +3,6 @@
         data-size="{{ button_size }}"
         {% if not show_user_photo %} data-userpic="false" {% endif %}
         data-radius="{{ corner_radius }}"
-        data-auth-url="{{ redirect_url }}"
+        data-auth-url="{{ redirect_url }}?next={{ next }}"
         {% if ask_to_send_messages %} data-request-access="write" {% endif %}>
 </script>

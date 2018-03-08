@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth import REDIRECT_FIELD_NAME
 
 from social_core.backends.base import BaseAuth
 from social_core.utils import handle_http_errors
@@ -44,6 +45,8 @@ class TelegramAuth(BaseAuth):
     @handle_http_errors
     def auth_complete(self, request, *args, **kwargs):
         response = self.turn_querydict_into_dict(request.GET.dict())
+        next_uri = response.pop(REDIRECT_FIELD_NAME, None)
+        self.strategy.session_set(REDIRECT_FIELD_NAME, next_uri)
         self.process_error(data=response)
         kwargs.update({'backend': self, 'response': response})
         return self.strategy.authenticate(*args, **kwargs)
