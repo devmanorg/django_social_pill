@@ -1,3 +1,3 @@
-<a class="btn {% if is_large %}btn-lg{% endif %} btn-block btn-social btn-twitter" href="{% url 'social:begin' 'twitter' %}?next={{ next }}">
+<a class="btn {% if is_large %}btn-lg{% endif %} btn-block btn-social btn-twitter" href="{% url 'social:begin' 'twitter' %}?{{ query_string }}">
   <i class="fa fa-twitter"></i> {% if is_login %}Войти{% else %}Зарегистрироваться{% endif %} через Твиттер
 </a>
