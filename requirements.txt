@@ -1,2 +1,2 @@
 requests==2.18.4
-social-auth-app-django==2.1.0
+social-auth-app-django==3.0.0
