@@ -47,7 +47,8 @@ def save_user_avatar(backend, user, response, *args, **kwargs):
     if backend.name == 'twitter':
         url = response['profile_image_url']
     if backend.name == 'google-oauth2':
-        url = response['image'].get('url')
+        image = response.get('image')
+        url = image and image.get('url')
     elif backend.name == 'facebook':
         url = "http://graph.facebook.com/%s/picture?type=large" % response['id']
         ext = 'jpg'
