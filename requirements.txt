@@ -1,2 +1,2 @@
-requests==2.18.4
-social-auth-app-django==3.0.0
+requests>=2.18,<3.0
+social-auth-app-django>=3.0,<=3.1
